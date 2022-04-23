@@ -30,6 +30,10 @@ pip install -r requirements.txt
 
 Start from `sources/index.m.md`, add `xxx.m.md` markdown files described in [mark-markdown-up](https://github.com/hailiang-wang/mark-markdown-up).
 
+## Add Media Assets
+
+Add files, artifacts in `assets`.
+
 ## Build Office Word File
 
 ```bash
