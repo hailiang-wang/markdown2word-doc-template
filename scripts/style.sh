@@ -48,6 +48,4 @@ if [ ! -f $BACKUP_DIR/default.docx ]; then
 fi
 
 cp $BACKUP_DIR/default.docx .
-
-
 echo "Style file generated" `pwd`/default.docx
