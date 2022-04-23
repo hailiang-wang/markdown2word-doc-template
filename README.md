@@ -4,8 +4,16 @@ Markdown to Word Document Template
 
 ## Init New File Project
 
+```bash
+mkdir PROJECT_NAME && cd "$_"
+curl -L https://github.com/hailiang-wang/markdown2word-doc-template/tarball/master | tar xz --strip-components=1
 ```
-curl -L https://github.com/hailiang-wang/markdown2word-doc-template/tarball/master | tar xz
+
+Replace `PROJECT_NAME` with new names, e.g.
+
+```bash
+mkdir Report2022 && cd "$_"
+curl -L https://github.com/hailiang-wang/markdown2word-doc-template/tarball/master | tar xz --strip-components=1
 ```
 
 ## Deps
