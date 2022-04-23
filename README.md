@@ -16,6 +16,22 @@ mkdir Report2022 && cd "$_"
 curl -L https://github.com/hailiang-wang/markdown2word-doc-template/tarball/master | tar xz --strip-components=1
 ```
 
+## Create New Readme
+
+```
+./scripts/manual.sh
+```
+
+## Build new XMind File
+
+```
+# Windows
+start README.xmind
+
+# macOS
+open README.xmind
+```
+
 ## Deps
 
 * Python 3
