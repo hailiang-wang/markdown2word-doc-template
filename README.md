@@ -56,6 +56,10 @@ Add files, artifacts in `assets`.
 ./scripts/build.sh
 ```
 
+## Collect Ouput Files
+
+Copy works as final result into [dist](./dist/).
+
 ## Sample Markdown File
 
 [default.m.md](./styles/default.m.md)
