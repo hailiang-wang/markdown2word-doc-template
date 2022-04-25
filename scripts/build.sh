@@ -99,6 +99,11 @@ function build(){
         exit 1
     fi
 
+    # tune index.md before convert into Word with pandoc.
+    if [ -f $baseDir/hook.before_pandoc.sh ]; then
+        $baseDir/hook.before_pandoc.sh $buildDir/index.md
+    fi
+
     # build manual https://pandoc.org/MANUAL.html#extension-empty_paragraphs
     pandoc --from markdown+footnotes --wrap=none --reference-doc=$baseDir/../styles/default.docx -i index.md -o $buildDir/$baseDirname.docx
 
