@@ -60,6 +60,12 @@ Add files, artifacts in `assets`.
 
 Copy works as final result into [dist](./dist/).
 
+## Add a Cover
+
+Get cover samples in [assets/covers](./assets/covers/).
+
+Save cover in [Office Word](https://www.thewindowsclub.com/insert-cover-page-to-a-document-word).
+
 ## Sample Markdown File
 
 [default.m.md](./styles/default.m.md)
