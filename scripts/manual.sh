@@ -18,4 +18,5 @@ cd $baseDir/..
 pwd
 set -x
 cp README.md MANUAL.md
-echo "# README.md" > README.md
+head -n 2 MANUAL.md > README.md
+echo "## Build Manual \nRead [Doc](./MANUAL.md)" >> README.md
