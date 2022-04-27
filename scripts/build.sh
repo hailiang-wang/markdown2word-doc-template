@@ -81,7 +81,14 @@ function build(){
     fi
 
     cd $baseDir/..
-    rm -rf _build
+    if [ -d _build ]; then
+        rm -rf _build
+        if [ ! $? -eq 0 ]; then
+            echo "Remove old build dir failure."
+            exit 1
+        fi
+    fi
+
     cp -rf sources _build
     buildDir=$baseDir/../_build
     echo ">> buildDir" $buildDir
@@ -105,7 +112,9 @@ function build(){
     fi
 
     # build manual https://pandoc.org/MANUAL.html#extension-empty_paragraphs
+    set -x
     pandoc --from markdown+footnotes --wrap=none --reference-doc=$baseDir/../styles/default.docx -i index.md -o $buildDir/$baseDirname.docx
+    set +x
 
     if [ ! $? -eq 0 ]; then
         echo "Pandoc exec error"
