@@ -33,3 +33,4 @@ CTestTestfile.cmake
 _deps
 .env
 _build/
+docs/

@@ -35,7 +35,7 @@ open README.xmind
 ## Deps
 
 * Python 3
-* Pandoc 2.11
+* Pandoc 2.11+
 * Git && Git Bash for Windows
 
 ```bash
@@ -53,7 +53,13 @@ Add files, artifacts in `assets`.
 ## Build Office Word File
 
 ```bash
-./scripts/build.sh
+./scripts/docx.sh
+```
+
+## Build HTML File
+
+```bash
+./scripts/html.sh
 ```
 
 ## Collect Ouput Files
