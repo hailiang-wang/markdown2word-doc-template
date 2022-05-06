@@ -32,6 +32,14 @@ start README.xmind
 open README.xmind
 ```
 
+## Autocorrect Grammer
+
+Auto fix CJK Grammer with English.
+
+```
+./scripts/autocorrect.sh
+```
+
 ## Deps
 
 * Python 3
