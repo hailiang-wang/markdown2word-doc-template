@@ -105,7 +105,7 @@ def process(file):
                     if ls[r] == " ": # 是空格
                         # 前一个是中文，下一个是中文
                         if (ll - 1) >= (r + 1): # 上一个及下一个存在
-                            if (is_zh(ls[r - 1]) and is_zh(ls[r + 1])) or ls[r + 1] == " ": # 上一个和下一个是中文，或者下一个是空格
+                            if is_zh(ls[r - 1]) and is_zh(ls[r + 1]): # 上一个和下一个是中文
                                 pass # 忽略
                             else:
                                 lret.append(ls[r]) # 不满足上述条件，不忽略
