@@ -1,6 +1,7 @@
 #! /bin/bash 
 ###########################################
 #
+# https://github.com/huacnlee/autocorrect
 ###########################################
 
 # constants
@@ -14,10 +15,6 @@ export PATH=/opt/miniconda3/envs/venv-py3/bin:$PATH
 [ -z "${BASH_SOURCE[0]}" -o "${BASH_SOURCE[0]}" = "$0" ] || return
 CMD="PLACEHOLDER"
 
-# if []; then
-
-# fi
-
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)     MACHINE=Linux;;
@@ -29,20 +26,26 @@ esac
 echo ${MACHINE}
 
 if [ $MACHINE == "MinGw" ]; then
-    CMD=$baseDir/autocorrect/win
+    CMD=$baseDir/formatters/autocorrect_windows.exe
 elif [ $MACHINE == "Darwin" ]; then
-    CMD=$baseDir/autocorrect/macos
+    CMD=$baseDir/formatters/autocorrect_macos
     chmod +x $CMD
 elif [ $MACHINE == "Cygwin" ]; then
-    CMD=$baseDir/autocorrect/win
+    CMD=$baseDir/formatters/autocorrect_windows.exe
 elif [ $MACHINE == "Linux" ]; then
-    CMD=$baseDir/autocorrect/linux
+    CMD=$baseDir/formatters/autocorrect_linux
     chmod +x $CMD
 else
     echo "Not supported" $MACHINE
     exit 1
 fi
 
-cd $baseDir/..
+cd $baseDir/../sources
+for x in `find . -name "*.md"`; do
+    echo "merge_chinese_chars in sources <<" $x 
+    $baseDir/formatters/merge_chinese_chars.py $x
+done
 
+set -x
+cd $baseDir/..
 $CMD --fix sources
