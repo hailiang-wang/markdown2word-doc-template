@@ -26,12 +26,12 @@ esac
 echo ${MACHINE}
 
 if [ $MACHINE == "MinGw" ]; then
-    CMD=$baseDir/formatters/autocorrect_windows.exe
+    CMD=$baseDir/formatters/autocorrect_win
 elif [ $MACHINE == "Darwin" ]; then
     CMD=$baseDir/formatters/autocorrect_macos
     chmod +x $CMD
 elif [ $MACHINE == "Cygwin" ]; then
-    CMD=$baseDir/formatters/autocorrect_windows.exe
+    CMD=$baseDir/formatters/autocorrect_win
 elif [ $MACHINE == "Linux" ]; then
     CMD=$baseDir/formatters/autocorrect_linux
     chmod +x $CMD
