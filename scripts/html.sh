@@ -115,6 +115,7 @@ function build(){
     # fix image path error
     cd $buildDir
     sed -i "s/(..\/assets\//(assets\//g" index.md
+    mdformat index.md
     pandoc --from markdown+footnotes --wrap=none --metadata title="update title in html.sh" --template=$baseDir/../styles/github.html5 -i index.md -o $buildDir/$baseDirname.html
     if [ -f $buildDir/$baseDirname.html ]; then
         if [ ! -d $buildDir/../docs ]; then
