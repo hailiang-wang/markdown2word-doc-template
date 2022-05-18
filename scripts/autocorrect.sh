@@ -41,9 +41,13 @@ else
 fi
 
 cd $baseDir/../sources
+
 for x in `find . -name "*.md"`; do
-    echo "merge_chinese_chars in sources <<" $x 
+    echo "merge_chinese_chars in sources <<" $x
     $baseDir/formatters/merge_chinese_chars.py $x
+
+    echo "force_endof_blank in sources <<" $x
+    $baseDir/formatters/force_endof_blank.py $x
 done
 
 set -x

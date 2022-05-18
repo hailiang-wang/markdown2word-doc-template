@@ -111,7 +111,6 @@ function build(){
         $baseDir/hook.before_pandoc.sh $buildDir/index.md
     fi
 
-    mdformat index.md
     # build manual https://pandoc.org/MANUAL.html#extension-empty_paragraphs
     set -x
     pandoc --from markdown+footnotes --wrap=none --reference-doc=$baseDir/../styles/default.docx -i index.md -o $buildDir/$baseDirname.docx
