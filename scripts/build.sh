@@ -20,13 +20,18 @@ function open_file(){
         echo "File" $1 "not exist."
     fi
 
-    which start
+    command -v start &> /dev/null
     if [ $? -eq 0 ]; then
         start $1
     else
-        which open
+        command -v open &> /dev/null
         if [ $? -eq 0 ]; then
             open $1
+        else
+            command -v start.sh &> /dev/null
+            if [ $? -eq 0 ]; then
+                start.sh $1
+            fi
         fi
     fi
 }
