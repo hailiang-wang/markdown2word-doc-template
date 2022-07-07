@@ -11,6 +11,7 @@ export PATH=/opt/miniconda3/envs/venv-py3/bin:$PATH
 export BUILD_ROOT_DIR=$baseDir/../_build
 export BACKUP_DIR=$baseDir/../tmp
 export KEEPED_BUILDS=10
+MACHINE=
 
 # functions
 
@@ -113,7 +114,13 @@ function build(){
 
     # build manual https://pandoc.org/MANUAL.html#extension-empty_paragraphs
     set -x
-    pandoc --from markdown+footnotes --wrap=none --reference-doc=$baseDir/../styles/default.docx -i index.md -o $buildDir/$baseDirname.docx
+    if [ $MACHINE == "Cygwin" ]; then
+        STYLE_FILE=`cygpath -w $baseDir/../styles/default.docx`
+        OUTPUT_DOCX=`cygpath -w $buildDir/$baseDirname.docx`
+        pandoc --from markdown+footnotes --wrap=none --reference-doc=$STYLE_FILE -i index.md -o $OUTPUT_DOCX
+    else
+        pandoc --from markdown+footnotes --wrap=none --reference-doc=$baseDir/../styles/default.docx -i index.md -o $buildDir/$baseDirname.docx
+    fi
     set +x
 
     if [ ! $? -eq 0 ]; then
@@ -136,6 +143,16 @@ function build(){
 
 # main
 [ -z "${BASH_SOURCE[0]}" -o "${BASH_SOURCE[0]}" = "$0" ] || return
+
+## Resolve machine
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     MACHINE=Linux;;
+    Darwin*)    MACHINE=Mac;;
+    CYGWIN*)    MACHINE=Cygwin;;
+    MINGW*)     MACHINE=MinGw;;
+    *)          MACHINE="UNKNOWN:${unameOut}"
+esac
 
 if [ ! -d $BUILD_ROOT_DIR ]; then
     mkdir $BUILD_ROOT_DIR

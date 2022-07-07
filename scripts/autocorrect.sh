@@ -1,4 +1,4 @@
-#! /bin/bash 
+#! /bin/bash
 ###########################################
 #
 # https://github.com/huacnlee/autocorrect
@@ -8,10 +8,11 @@
 baseDir=$(cd `dirname "$0"`;pwd)
 export PYTHONUNBUFFERED=1
 export PATH=/opt/miniconda3/envs/venv-py3/bin:$PATH
+MACHINE=
 
 # functions
 
-# main 
+# main
 [ -z "${BASH_SOURCE[0]}" -o "${BASH_SOURCE[0]}" = "$0" ] || return
 CMD="PLACEHOLDER"
 
@@ -23,7 +24,6 @@ case "${unameOut}" in
     MINGW*)     MACHINE=MinGw;;
     *)          MACHINE="UNKNOWN:${unameOut}"
 esac
-echo ${MACHINE}
 
 if [ $MACHINE == "MinGw" ]; then
     CMD=$baseDir/formatters/autocorrect_win
@@ -44,10 +44,14 @@ cd $baseDir/../sources
 
 for x in `find . -name "*.md"`; do
     echo "merge_chinese_chars in sources <<" $x
-    $baseDir/formatters/merge_chinese_chars.py $x
-
     echo "force_endof_blank in sources <<" $x
-    $baseDir/formatters/force_endof_blank.py $x
+    if [ $MACHINE == "Cygwin" ]; then
+        python `cygpath -w $baseDir/formatters/merge_chinese_chars.py` $x
+        python `cygpath -w $baseDir/formatters/force_endof_blank.py` $x
+    else
+        $baseDir/formatters/merge_chinese_chars.py $x
+        $baseDir/formatters/force_endof_blank.py $x
+    fi
 done
 
 set -x
