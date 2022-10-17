@@ -1,4 +1,5 @@
-#! /bin/bash 
+#! /bin/bash
+shopt -s expand_aliases
 ###########################################
 #
 ###########################################
@@ -20,17 +21,26 @@ function open_file(){
         echo "File" $1 "not exist."
     fi
 
-    command -v start &> /dev/null
-    if [ $? -eq 0 ]; then
-        start $1
+    if [ -n "$IS_WSL" ] || [ -n "$WSL_DISTRO_NAME" ]; then
+        # Fix the /mnt path prefix problem
+        #     https://learn.microsoft.com/en-us/windows/wsl/filesystems
+        #     https://superuser.com/questions/1633603/is-it-possible-to-open-windows-applications-from-inside-a-windows-subsystem-for
+        targetDir=$(cd `dirname "$1"`;pwd)
+        cd $targetDir
+        cmd.exe /c start `filename $1`
     else
-        command -v open &> /dev/null
+        command -v start &> /dev/null
         if [ $? -eq 0 ]; then
-            open $1
+            start $1
         else
-            command -v start.sh &> /dev/null
+            command -v open &> /dev/null
             if [ $? -eq 0 ]; then
-                start.sh $1
+                open $1
+            else
+                command -v start.sh &> /dev/null
+                if [ $? -eq 0 ]; then
+                    start.sh $1
+                fi
             fi
         fi
     fi
@@ -138,8 +148,9 @@ function build(){
 
         # todo slim build folders
         slim $baseDirname $BACKUP_DIR $KEEPED_BUILDS
-
+        echo "x"
         # open file
+        echo "Open File" $buildDir/$baseDirname.docx
         open_file $buildDir/$baseDirname.docx
     else
         "Not found" $buildDir/$baseDirname.docx ", build failure."

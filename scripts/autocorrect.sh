@@ -35,6 +35,8 @@ elif [ $MACHINE == "Cygwin" ]; then
 elif [ $MACHINE == "Linux" ]; then
     CMD=$baseDir/formatters/autocorrect_linux
     chmod +x $CMD
+    # For Windows WSL, check
+    # [ -n "$IS_WSL" ] || [ -n "$WSL_DISTRO_NAME" ] && echo 'wsl' || echo 'anything else'
 else
     echo "Not supported" $MACHINE
     exit 1
