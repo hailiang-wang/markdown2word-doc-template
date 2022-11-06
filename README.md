@@ -10,3 +10,18 @@ curl -L https://github.com/hailiang-wang/markdown2word-doc-template/tarball/mast
 ## Build
 
 [Docs](./BUILD.md)
+
+## Trouble Shooting
+
+### Script Error bad interpreter
+
+`/bin/bash^M: bad interpreter: No such file or directory`
+
+
+Solution - 
+
+```
+cd PROJECT_DIR
+dos2unix scripts/*.sh
+dos2unix scripts/formatters/*.py
+```
