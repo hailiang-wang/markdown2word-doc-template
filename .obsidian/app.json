@@ -1,0 +1,20 @@
+{
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "current",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "assets",
+  "userIgnoreFilters": [
+    "tmp",
+    ".git",
+    ".fid",
+    "assets",
+    "temp",
+    "_build",
+    "dist",
+    "node_moduels",
+    "min.js"
+  ],
+  "promptDelete": false
+}
