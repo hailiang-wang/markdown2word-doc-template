@@ -4,12 +4,11 @@
   "newLinkFormat": "relative",
   "useMarkdownLinks": true,
   "showUnsupportedFiles": true,
-  "attachmentFolderPath": "assets",
+  "attachmentFolderPath": "assets/media",
   "userIgnoreFilters": [
     "tmp",
     ".git",
     ".fid",
-    "assets",
     "temp",
     "_build",
     "dist",
