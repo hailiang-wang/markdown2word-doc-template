@@ -15,8 +15,7 @@ export KEEPED_BUILDS=10
 MACHINE=
 
 # functions
-
-function open_file(){
+function open_file() {
     if [ ! -f $1 ]; then
         echo "File" $1 "not exist."
     fi
@@ -25,19 +24,24 @@ function open_file(){
         # Fix the /mnt path prefix problem
         #     https://learn.microsoft.com/en-us/windows/wsl/filesystems
         #     https://superuser.com/questions/1633603/is-it-possible-to-open-windows-applications-from-inside-a-windows-subsystem-for
-        targetDir=$(cd `dirname "$1"`;pwd)
+        targetDir=$(
+            cd $(dirname "$1")
+            pwd
+        )
         cd $targetDir
-        cmd.exe /c start `filename $1`
+        # sample to run with Windows Propmt CMD
+        # OR /c/devel/Git/bin/cmd.exe
+        cmd.exe /c start $(filename $1)
     else
-        command -v start &> /dev/null
+        command -v start &>/dev/null
         if [ $? -eq 0 ]; then
             start $1
         else
-            command -v open &> /dev/null
+            command -v open &>/dev/null
             if [ $? -eq 0 ]; then
                 open $1
             else
-                command -v start.sh &> /dev/null
+                command -v start.sh &>/dev/null
                 if [ $? -eq 0 ]; then
                     start.sh $1
                 fi
