@@ -22,6 +22,6 @@ Solution -
 
 ```
 cd PROJECT_DIR
-dos2unix scripts/*.sh
-dos2unix scripts/formatters/*.py
+dos2unix scripts/fix_dos2unix.sh
+scripts/fix_dos2unix.sh
 ```

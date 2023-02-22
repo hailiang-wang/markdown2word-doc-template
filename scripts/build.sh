@@ -163,6 +163,7 @@ function build(){
 
 # main
 [ -z "${BASH_SOURCE[0]}" -o "${BASH_SOURCE[0]}" = "$0" ] || return
+$baseDir/fix_dos2unix.sh
 
 ## Resolve machine
 unameOut="$(uname -s)"
