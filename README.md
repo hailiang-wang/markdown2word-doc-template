@@ -13,11 +13,7 @@ mkdir PROJECT_NAME && cd "$_"
 curl -L https://github.com/hailiang-wang/markdown2word-doc-template/tarball/master | tar xz --strip-components=1
 ```
 
-## Build
-
-[Docs](./BUILD.md)
-
-## Trouble Shooting
+## Fix Script Permissions
 
 ### Script Error bad interpreter
 
@@ -31,3 +27,7 @@ cd PROJECT_DIR
 dos2unix scripts/fix_dos2unix.sh
 scripts/fix_dos2unix.sh
 ```
+
+## More Help
+
+[Docs](./BUILD.md)
