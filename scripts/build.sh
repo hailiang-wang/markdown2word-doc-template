@@ -12,6 +12,7 @@ export PATH=/opt/miniconda3/envs/venv-py3/bin:$PATH
 export BUILD_ROOT_DIR=$baseDir/../_build
 export BACKUP_DIR=$baseDir/../tmp
 export KEEPED_BUILDS=10
+export MD_000_INDEX_M=000.index.m.md
 MACHINE=
 
 # functions
@@ -81,9 +82,12 @@ function build(){
     echo ">> sourcesDir" $sourcesDir
 
     cd $sourcesDir
-    if [ ! -f index.m.md ]; then
-        echo "File index.m.md not exists in" $sourcesDir
-        exit 1
+
+    if [ ! -f ${MD_000_INDEX_M} ]; then
+        if [ ! -f index.m.md ]; then
+            echo "File index.m.md or ${MD_000_INDEX_M} not exists in" $sourcesDir
+            exit 1
+        fi
     fi
 
     if [ -f index.md ]; then
@@ -96,8 +100,10 @@ function build(){
 
 
     cd $baseDir/..
-    if [ -f _build/index.md ]; then
-        cp -rf _build $BACKUP_DIR/$baseDirname.$TS
+    if [ -d $_build ]; then
+        if [ -f _build/index.md ]; then
+            cp -rf _build $BACKUP_DIR/$baseDirname.$TS
+        fi
     fi
 
     cd $baseDir/..
@@ -114,6 +120,11 @@ function build(){
     echo ">> buildDir" $buildDir
 
     cd $buildDir
+
+    if [ -f ${MD_000_INDEX_M} ]; then
+        mv ${MD_000_INDEX_M} index.m.md
+    fi
+
     markup index.m.md -o index.md
     
     if [ ! $? -eq 0 ]; then
