@@ -8,15 +8,6 @@
       "key": "N"
     }
   ],
-  "omnisearch:show-modal": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "S"
-    }
-  ],
   "app:toggle-left-sidebar": [
     {
       "modifiers": [
@@ -31,6 +22,14 @@
         "Alt"
       ],
       "key": "ArrowRight"
+    }
+  ],
+  "editor:toggle-source": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "P"
     }
   ]
 }

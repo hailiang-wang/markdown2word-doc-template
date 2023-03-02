@@ -15,5 +15,7 @@
     "node_moduels",
     "min.js"
   ],
-  "promptDelete": false
+  "promptDelete": false,
+  "livePreview": false,
+  "showLineNumber": true
 }

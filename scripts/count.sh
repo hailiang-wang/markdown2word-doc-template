@@ -11,6 +11,7 @@ export PATH=/opt/miniconda3/envs/venv-py3/bin:$PATH
 export TS=$(date +%Y%m%d%H%M%S)
 export DATE=`date "+%Y%m%d"`
 export DATE_WITH_TIME=`date "+%Y%m%d-%H%M%S"` #add %3N as we want millisecond too
+export MD_000_INDEX_M=000.index.m.md
 
 # functions
 
@@ -22,9 +23,11 @@ function work(){
     echo ">> sourcesDir" $sourcesDir
 
     cd $sourcesDir
-    if [ ! -f index.m.md ]; then
-        echo "File index.m.md not exists in" $sourcesDir
-        exit 1
+    if [ ! -f ${MD_000_INDEX_M} ]; then
+        if [ ! -f index.m.md ]; then
+            echo "File index.m.md or ${MD_000_INDEX_M} not exists in" $sourcesDir
+            exit 1
+        fi
     fi
 
     if [ -f index.md ]; then
@@ -54,6 +57,11 @@ function work(){
     echo ">> buildDir" $buildDir
 
     cd $buildDir
+
+    if [ -f ${MD_000_INDEX_M} ]; then
+        mv ${MD_000_INDEX_M} index.m.md
+    fi
+
     markup index.m.md -o index.md
     
     if [ ! $? -eq 0 ]; then
