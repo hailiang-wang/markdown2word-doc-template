@@ -1,6 +1,6 @@
 #! /bin/bash 
 ###########################################
-#
+# Create partials as reuseable notes in templates/partials
 ###########################################
 
 # constants
@@ -51,17 +51,20 @@ if [ ! -e $PARTIALS_DIR ]; then
     mkdir $PARTIALS_DIR
 fi
 
-PARTIAL_FILENAME=$DATE_WITH_TIME
+PARTIAL_FILENAME=
 
 if [ $# -gt 0 ]; then
-    PARTIAL_FILENAME=${PARTIAL_FILENAME}_$*
+    PARTIAL_FILENAME=$*
 fi
 
+PARTIAL_FILENAME=${PARTIAL_FILENAME}_${DATE_WITH_TIME}
 PARTIAL_FILENAME="${PARTIAL_FILENAME// /_}"
 
 echo "$PARTIAL_FILENAME"
 
-PARTIAL_FILEPATH=$PARTIALS_DIR/${PARTIAL_FILENAME}.m.md
+FULL_FILENAME=${PARTIAL_FILENAME}.m.md
+PARTIAL_FILEPATH=$PARTIALS_DIR/$FULL_FILENAME
+
 
 if [ -f $PARTIAL_FILEPATH ]; then
     echo "File" $PARTIAL_FILEPATH "exist."
@@ -72,6 +75,8 @@ create $PARTIAL_FILEPATH
 
 if [ $? -eq 0 ]; then
     echo "Created" $PARTIAL_FILEPATH
+    echo "Markup Markdown Include e.g. -"
+    echo "    !INCLUDE \"../partials/${FULL_FILENAME}\", 1"  
 else
     echo "Error"
     exit 1
