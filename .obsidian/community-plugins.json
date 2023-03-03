@@ -1,7 +1,5 @@
 [
   "omnisearch",
-  "cm-chs-patch",
-  "obsidian-mind-map",
   "calendar",
   "dataview",
   "cm-editor-syntax-highlight-obsidian",
@@ -9,5 +7,6 @@
   "obsidian-outliner",
   "obsidian-editor-shortcuts",
   "periodic-notes",
-  "templater-obsidian"
+  "templater-obsidian",
+  "obsidian-enhancing-mindmap"
 ]
